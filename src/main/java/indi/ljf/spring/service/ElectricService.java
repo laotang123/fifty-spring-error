@@ -18,9 +18,8 @@ public class ElectricService {
     private AdminUserService adminUserService;
 
     public void charge() throws InterruptedException {
-//        ElectricService electricService = ((ElectricService) AopContext.currentProxy());
-//        electricService.pay();
-        ElectricService electricService = ((ElectricService)AopContext.currentProxy());
+        ElectricService electricService = ((ElectricService) AopContext.currentProxy());
+        electricService.pay();
         electricService.doCharge();
     }
 
@@ -34,11 +33,11 @@ public class ElectricService {
 
     }
 
-//    public void pay() throws InterruptedException {
-//        adminUserService.login();
-//        String payNum = adminUserService.adminUser.getPayNum();
-//        log.info("user payNum : {}", payNum);
-//        log.info("pay with alipay ...");
-//        Thread.sleep(1000);
-//    }
+    public void pay() throws InterruptedException {
+        adminUserService.login();
+        String payNum = adminUserService.adminUser.getPayNum();
+        log.info("user payNum : {}", payNum);
+        log.info("pay with alipay ...");
+        Thread.sleep(1000);
+    }
 }
