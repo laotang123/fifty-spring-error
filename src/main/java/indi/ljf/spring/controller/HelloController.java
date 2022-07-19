@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.annotation.Resource;
 
@@ -69,5 +70,10 @@ public class HelloController {
     public String createStudent(@RequestBody Student student){
         System.out.println(student);
         return "成功";
+    }
+
+    @GetMapping("/c")
+    public String createStudent(){
+        throw new NotImplementedException();
     }
 }

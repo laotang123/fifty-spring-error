@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -100,6 +101,13 @@ public class GlobalExceptionHandler {
     public <T> ResponseData<T> exceptionHandler(Exception exception) {
         log.error(exception.getMessage(), exception);
         return ResponseData.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), "系统异常，请查看日志！");
+    }
+
+    @ExceptionHandler(value = NotImplementedException.class)
+    @ResponseStatus(HttpStatus.NOT_IMPLEMENTED)
+    public <T> ResponseData<T> exceptionHandler(NotImplementedException exception) {
+        log.error(exception.getMessage(), exception);
+        return ResponseData.fail(HttpStatus.NOT_IMPLEMENTED.value(), "请求方法未实现");
     }
 
 }
